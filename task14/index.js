@@ -21,27 +21,42 @@ const INGREDIENTS = {
     "matcha frappe": ["matcha", "milk", "ice"]
   };
 
-  let ul = document.getElementById('menu');
+let ul = document.getElementById('menu');
 
-  function addLine (value) {
-      value += value + "<br>";
-  }
+ ul.addEventListener('click',  function (event) {
+    let ol =  document.createElement('ol');
+     event.target.prepend(ol);
+    let ingredients = INGREDIENTS[event.target.textContent];
+     for(let ingredient of ingredients) {
+      let li = document.createElement('li');
+       li.innerHTML = ingredient;
+       ol.appendChild(li);
+      }
+    event.target.appendChild(ol);
+});
 
-  ul.addEventListener("click" , function (event) {
-    let elem = document.createElement('ol');
-        event.target.append(elem);
-    if(event.target.innerText === "cocoa"){
-        elem.append(INGREDIENTS.cocoa);
-    }else if(event.target.innerText === "cappuccino"){
-        elem.append(INGREDIENTS.cappuccino);
-    }else if(event.target.innerText === "smoothie"){
-        elem.append(INGREDIENTS.smoothie);
-    }else if(event.target.innerText === "matcha frappe"){
-        elem.append(INGREDIENTS["matcha frappe"]);
-    }   
-  }
-     
-  );
+
+//task *
+
+//let ul = document.getElementById('menu');
+
+//let evntFn =   function (event) {
+    //let ol =  document.createElement('ol');
+    // event.target.prepend(ol);
+    //let ingredients = INGREDIENTS[event.target.textContent];
+     //for(let ingredient of ingredients) {
+     // let li = document.createElement('li');
+     //  li.innerHTML = ingredient;
+      // ol.appendChild(li);
+    //  }
+  //  event.target.appendChild(ol);
+//};
+
+//ul.addEventListener('click', evntFn);
+//ul.removeEventListener('click', evntFn);
+
+
+
 
 
 
