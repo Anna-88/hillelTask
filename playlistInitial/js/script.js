@@ -25,10 +25,16 @@ function listSong(song) {
   creatButton('Like','like', li);
   let inputLike = document.getElementsByClassName('button like');
   console.log(inputLike);
-  inputLike.onclick = function(event){
-    if(song.isLiked === true){
-      event.target.style.backgroundImage = "./images/img.svg";
-    }
+  if(song.isLiked === true){
+    let img = document.createElement('img');
+    img.src = "./images/like.svg" ;
+    img.style = `
+        max-width: 50px;
+        padding: 5px;
+        position: relative;
+        top: 20px;
+    `
+    li.append(img);
   }
 }
 
