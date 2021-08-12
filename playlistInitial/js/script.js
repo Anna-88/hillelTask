@@ -21,55 +21,57 @@ function listSong(song) {
   let li = document.createElement('li');
   li.innerHTML = song.name;
   listSongs.prepend(li);
-  creatButton('Dislike','delete',li);
+  li.className = 'item'
+  creatButton('Delete','delete',li);
   creatButton('Like','like', li);
-  let inputLike = document.getElementsByClassName('button like');
-  console.log(inputLike);
-  if(song.isLiked === true){
-    let img = document.createElement('img');
-    img.src = "./images/like.svg" ;
-    img.style = `
-        max-width: 50px;
-        padding: 5px;
-        position: relative;
-        top: 20px;
-    `
-    li.append(img);
-  }
+   if(song.isLiked === true){
+    addImg(li)
 }
+ 
+  function addImg(parent){
+   let img = document.createElement('img');
+   img.src = "./images/like.svg";
+   img.className = 'like-icon';
+    parent.append(img);
+
+ }
+
 
 function creatButton (text,cl,parent) {
   let input = document.createElement('input');
   input.value = text;
   input.className = 'button '  + cl;
   parent.append(input);
+  input.addEventListener('click', function(event){
+    if(event.target.className === 'button delete'){
+      parent.remove()
+    }else if(event.target.className === 'button like'){
+      console.log('Hello');
+      addImg(parent);
+      event.target.className = 'button dislike';
+    }else if(event.target.className === 'button dislike'){
+      document.querySelector('img').remove();
+      event.target.className = 'button like'
+    }
+  })
 };
+
+ 
+
+
+
 
 let search = document.querySelector('.input-box');
 let add = document.querySelector('.button-add');
 
 add.addEventListener("click", function () {
   let song = search.value;
-  let linew = document.createElement('li');
-  linew.innerHTML = song;
-  listSongs.append(linew);
-  creatButton('Dislike','delete',linew);
-  creatButton('Like','like', linew);
-});
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
+  let newLi = document.createElement('li');
+  newLi.innerHTML = song;
+  newLi.className = 'item';
+  listSongs.append(newLi);
+  creatButton('Delete','delete', newLi);
+  creatButton('Like','like', newLi);
+})
+};
 
