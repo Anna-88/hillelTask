@@ -9,7 +9,7 @@ let songs = [{
 
 window.addEventListener('load', function() {
 	 songs.forEach((song) => listSong(song));
-   
+    count(listSongs);   
 
 });
 
@@ -27,14 +27,14 @@ function listSong(song) {
    if(song.isLiked === true){
     addImg(li)
 }
+}
  
   function addImg(parent){
    let img = document.createElement('img');
    img.src = "./images/like.svg";
    img.className = 'like-icon';
     parent.append(img);
-
- }
+  }
 
 
 function creatButton (text,cl,parent) {
@@ -42,23 +42,22 @@ function creatButton (text,cl,parent) {
   input.value = text;
   input.className = 'button '  + cl;
   parent.append(input);
-  input.addEventListener('click', function(event){
+    input.addEventListener('click', function(event){
     if(event.target.className === 'button delete'){
       parent.remove()
+      count(listSongs);
     }else if(event.target.className === 'button like'){
-      console.log('Hello');
       addImg(parent);
       event.target.className = 'button dislike';
     }else if(event.target.className === 'button dislike'){
-      document.querySelector('img').remove();
+      let img = parent.querySelector('img');
+      img.remove() 
       event.target.className = 'button like'
-    }
+
+  }
   })
+  
 };
-
- 
-
-
 
 
 let search = document.querySelector('.input-box');
@@ -72,6 +71,10 @@ add.addEventListener("click", function () {
   listSongs.append(newLi);
   creatButton('Delete','delete', newLi);
   creatButton('Like','like', newLi);
+  count(listSongs);
 })
-};
 
+let spanCount = document.querySelector('.count') 
+function count (elem) {
+  spanCount.innerHTML =  elem.querySelectorAll('li').length;
+}
