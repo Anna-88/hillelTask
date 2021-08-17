@@ -12,7 +12,11 @@ let promise = new Promise(function(resolve, reject){
 });
 
 promise.then(function(resolve){
-  console.log(resolve)
+  if(resolve === "Start the game..."){
+      console.log('Stay here')
+  }else{
+      console.log('Go <number> steps')
+  }
 })
 .catch(error => {
     console.error(error);
