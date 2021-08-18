@@ -2,20 +2,19 @@ let promise = new Promise(function(resolve, reject){
     let number = Math.floor(Math.random() * 6) + 1
     setTimeout(function() {
         if(number >= 1 && number <= 5){
-            resolve('Start the game...')
-            return number;
+            console.log('Start the game...');
+            resolve(number);
         }else if(number === 6){
            reject('Exit');
-           return number;
         }
     },2000)
 });
 
 promise.then(function(resolve){
-  if(resolve === "Start the game..."){
-      console.log('Stay here')
+  if(resolve === 1){
+      console.log("Stay here")
   }else{
-      console.log('Go <number> steps')
+      console.log(`Go ${resolve} steps.`)
   }
 })
 .catch(error => {
