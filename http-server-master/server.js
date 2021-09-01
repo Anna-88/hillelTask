@@ -13,7 +13,7 @@ const PORT = 5000;
 //console.log(htmlContent); 
  
 const server = http.createServer((req, res) => { 
-    if (req.url === '/homeworks') { 
+    if (req.url === '/homework' || req.url === '/homework/') { 
         res.write(` 
         <!DOCTYPE html> 
             <html lang="en"> 
@@ -22,12 +22,14 @@ const server = http.createServer((req, res) => {
                 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
                 <title>Document</title> 
+                <link rel="stylesheet" href="/styles/style.css">
+                <link rel="icon" href="data:;base64,iVBORw0KGgo=">
             </head> 
             <body> 
                 <ol> 
         `); 
         homeworks.forEach(homework => { 
-            res.write(`<li>${homework.title}</li>`); 
+            res.write(`<li><a href="/homework/${homework._id}">${homework.title}<a/></li>`); 
         }); 
  
         res.write(` 
@@ -37,7 +39,32 @@ const server = http.createServer((req, res) => {
         `); 
         //res.write(homeworks); 
         res.end(); 
-    } else { 
+    }else if(req.url.split('/')[2] !== ''){
+        let idHM = req.url.split('/')[2];
+        res.write(` 
+        <!DOCTYPE html> 
+            <html lang="en"> 
+            <head> 
+                <meta charset="UTF-8"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+                <title>Document</title> 
+                <link rel="stylesheet" href="/styles/style.css">
+                <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+            </head> 
+            <body>
+            `);
+            homeworks.filter(function(homework){
+                if(homework._id === idHM){
+                    res.write(`<div>${homework.description}</div>`);
+                }
+            }); 
+            res.write(` 
+         </body> 
+       </html> 
+    `);
+      res.end();      
+    }else { 
  
         const indexPath = path.join(serverPath, 'static', req.url); 
  
