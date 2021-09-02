@@ -1,0 +1,14 @@
+body{
+    background-color: blanchedalmond;
+}
+
+div{
+    margin: 0 auto;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    background-color: cornsilk;
+    border-radius: 50%;
+    line-height: 200px;
+    font-size: 56px;
+}
