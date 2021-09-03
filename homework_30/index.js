@@ -1,15 +1,17 @@
 //TASK_1
 
 function getTime(){
-    let timeStart =  '';
+    let start =  0;
+    let timeStart = Math.floor(Math.random() * 60) + 1;
    return function () {
-    if (timeStart === '1'){
+    if (start === 1){
         console.log('Enabled')
-    }else if(timeStart >= '2') {
-        let timeCaling = Math.floor(Math.random() * 60) + 1;
-         console.log(`${timeCaling} seconds have passed`);
+    }else if(start >= 2) {
+        let timeProcessing = Math.floor(Math.random() * 60) + 1;
+        let timeDif = timeProcessing - timeStart;
+         console.log(`${timeDif} seconds have passed`);
     }
-       return timeStart++  
+       return start++;
    }
 }
 
@@ -37,7 +39,7 @@ const timer = time => {
     },1000)
    }
 
-timer(10);
+//timer(10);
 
 
 
