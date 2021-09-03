@@ -1,22 +1,23 @@
 //TASK_1
 
 function getTime(){
-    let counter = 0;
-    let timeStart =  Number(new Date().toLocaleTimeString().substring(6));
+    let timeStart =  '';
    return function () {
-    if (counter === 1){
+    if (timeStart === '1'){
         console.log('Enabled')
-    }else if(counter >= 2) {
-         console.log(`${timeStart} seconds have passed`);
+    }else if(timeStart >= '2') {
+        let timeCaling = Math.floor(Math.random() * 60) + 1;
+         console.log(`${timeCaling} seconds have passed`);
     }
-       return counter++ 
+       return timeStart++  
    }
 }
 
-let call1 = getTime();
-console.log(call1());
-console.log(call1());
-console.log(call1());
+let testCalling = getTime();
+console.log(testCalling());
+console.log(testCalling());
+console.log(testCalling());
+
 
 //TASK_2
 let element = document.querySelector('#counter')
