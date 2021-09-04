@@ -1,19 +1,20 @@
 //TASK_1
 
 function getTime(){
-    let start =  0;
-    let timeStart = Math.floor(Math.random() * 60) + 1;
-   return function () {
-    if (start === 1){
-        console.log('Enabled')
-    }else if(start >= 2) {
-        let timeProcessing = Math.floor(Math.random() * 60) + 1;
-        let timeDif = timeProcessing - timeStart;
-         console.log(`${timeDif} seconds have passed`);
-    }
-       return start++;
-   }
-}
+    let timeStart = 0;
+  return function(){
+        if(timeStart){
+            const newdDte = new Date().getTime();
+            const diff  = (newdDte - timeStart) / 1000;
+            timeStart = newdDte;
+            return `${diff} seconds have passed`
+        }else{
+            console.log('Enabled');
+            timeStart = new Date().getTime();
+        }
+  }
+   
+};
 
 let testCalling = getTime();
 console.log(testCalling());
